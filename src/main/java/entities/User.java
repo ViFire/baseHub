@@ -2,17 +2,28 @@ package entities;
 
 import jakarta.persistence.*;
 
-import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-public class User implements Serializable {
-
-    private static final long serialVersionUID = -2854035784525333365L;
+public class User extends AbstractBaseEntity {
 
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(unique = true)
     private String name;
+    private String password;
+
+    @Column(name = "role")
+    @ElementCollection(targetClass = UserRole.class)
+    @CollectionTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role"})}
+    )
+    @Enumerated(EnumType.STRING)
+    private Set<UserRole> roles = new HashSet<>();
 
     public int getId() {
         return id;
@@ -28,5 +39,21 @@ public class User implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<UserRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<UserRole> roles) {
+        this.roles = roles;
     }
 }

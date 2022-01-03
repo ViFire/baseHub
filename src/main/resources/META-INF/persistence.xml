@@ -10,9 +10,26 @@
 
 
         <properties>
+            <!-- none - create - drop - drop-and-create -->
             <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
 
 
+
+            <!--
+            jakarta.persistence.schema-generation.create-script-source / javax.persistence.schema-generation.create-script-source
+            The name or file URL to the script that creates the database.
+            -->
+
+            <!--
+            jakarta.persistence.schema-generation.drop-script-source / javax.persistence.schema-generation.drop-script-source
+            The name or file URL to the script that drops the database.
+            -->
+
+            <!--
+            jakarta.persistence.sql-load-script-source / javax.persistence.sql-load-script-source
+            The name or file URL to the script that initializes the database with a predefined dataset.
+            -->
+            <property name="jakarta.persistence.sql-load-script-source" value="init-database.sql"/>
 
         </properties>
     </persistence-unit>

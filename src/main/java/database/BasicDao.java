@@ -13,6 +13,4 @@ public class BasicDao {
         em.persist(user);
     }
 
-
-
 }
