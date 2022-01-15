@@ -1,7 +1,7 @@
 package entities;
 
+import api.security.PasswordHelper;
 import jakarta.persistence.*;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,6 +24,14 @@ public class User extends AbstractBaseEntity {
     )
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
+
+    public Account getAccount() {
+        return account;
+    }
 
     public int getId() {
         return id;
@@ -55,5 +63,9 @@ public class User extends AbstractBaseEntity {
 
     public void setRoles(Set<UserRole> roles) {
         this.roles = roles;
+    }
+
+    public void encryptPassword() {
+        this.password = PasswordHelper.encryptPassword(password);
     }
 }
