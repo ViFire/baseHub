@@ -2,15 +2,17 @@ package api.context;
 
 import entities.User;
 import jakarta.annotation.PostConstruct;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.container.ResourceInfo;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.Response;
 
-public class BasicResourceResponse implements IBasicResourceResponse {
+public class BasicWebServiceOperation implements IBasicWebServiceOperation {
 
     @Context
     private ResourceInfo resourceInfo;
-    protected User authenticatedUser;
+
+    protected User loggedInUser;
     protected StatusReport response = new StatusReport();
 
     public StatusReport getStatus() {
@@ -32,7 +34,7 @@ public class BasicResourceResponse implements IBasicResourceResponse {
 
     @PostConstruct
     public void initResource() {
-        System.out.println("TEST 1");
+        System.out.println("INIT RESOURCE");
         return;
     }
 
