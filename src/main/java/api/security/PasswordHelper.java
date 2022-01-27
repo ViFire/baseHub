@@ -30,8 +30,8 @@ public class PasswordHelper {
         return "";
     }
 
-    public static boolean validatePassword(String originalPassword, String storedPassword) {
-        String[] parts = storedPassword.split(":");
+    public static boolean validatePassword(String originalPassword, String storedEncryptedPassword) {
+        String[] parts = storedEncryptedPassword.split(":");
         int iterations = Integer.parseInt(parts[0]);
         byte[] salt;
         try {
