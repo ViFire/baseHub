@@ -1,6 +1,6 @@
 package api.resources;
 
-import api.context.BasicResourceResponse;
+import api.context.BasicWebServiceOperation;
 import api.security.UserRoles;
 import database.UserRepository;
 import entities.User;
@@ -22,7 +22,7 @@ import java.util.Set;
 @Path("/test")
 @Stateless
 @TransactionManagement(TransactionManagementType.BEAN)
-public class TestResource extends BasicResourceResponse {
+public class TestResource extends BasicWebServiceOperation {
 
     @Resource
     private UserTransaction transaction;
@@ -33,7 +33,7 @@ public class TestResource extends BasicResourceResponse {
     @GET
     @Produces("text/plain")
     @Path("test1")
-    @UserRoles(values = {UserRole.PUBLIC})
+    @UserRoles(values = {UserRole.ADMIN})
     public String test() throws SystemException, NotSupportedException, HeuristicRollbackException, HeuristicMixedException, RollbackException {
         User newusr = new User();
         newusr.setName("Test");

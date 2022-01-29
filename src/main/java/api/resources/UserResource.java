@@ -1,11 +1,10 @@
 package api.resources;
 
-import api.context.BasicResourceResponse;
+import api.context.BasicWebServiceOperation;
 import api.security.UserRoles;
 import database.UserRepository;
 import entities.User;
 import entities.UserRole;
-import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;
@@ -18,14 +17,12 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-
-import java.text.MessageFormat;
 import java.util.Optional;
 
 @Path("/users")
 @Stateless
 @TransactionManagement(TransactionManagementType.BEAN)
-public class UserResource extends BasicResourceResponse {
+public class UserResource extends BasicWebServiceOperation {
 
     @Resource
     private UserTransaction transaction;
@@ -36,7 +33,7 @@ public class UserResource extends BasicResourceResponse {
     @GET
     @Path("id/{userid}")
     @Produces(MediaType.APPLICATION_JSON)
-    @UserRoles(values = {UserRole.PUBLIC})
+    @UserRoles(values = {UserRole.ADMIN})
     public Response getUserById(@PathParam("userid") int id) throws SystemException, NotSupportedException, HeuristicRollbackException, HeuristicMixedException, RollbackException {
         Optional<User> user = repo.find(id);
 

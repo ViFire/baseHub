@@ -7,6 +7,7 @@ import jakarta.ws.rs.core.Context;
 
 import java.io.IOException;
 import java.util.UUID;
+import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
@@ -20,14 +21,10 @@ public class LogFilter implements ContainerRequestFilter {
         String logId = UUID.randomUUID().toString();
         Logger log = LogManager.getLogManager().getLogger(logId);
 
-        String newLine = System.getProperty("line.separator");
-        String requestInfo = new StringBuilder()
-                .append("New request: ")
-                .append(requestContext.getMethod()+" ")
-                .append(resourceInfo.getResourceMethod().getName())
-                .toString();
-
-        log.info(requestInfo);
+        log.log(Level.INFO, "Incoming {0} request on {1}", new Object[]{
+                requestContext.getMethod(),
+                resourceInfo.getResourceMethod().getName() }
+        );
         requestContext.setProperty("logger", log);
 
     }

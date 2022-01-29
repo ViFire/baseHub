@@ -20,15 +20,22 @@ public class DynamicRequestFilter implements DynamicFeature {
 
         if(roles == null) {
             context.register(new NotAvailableResourceFilter());
-        } else {
-            List rolesList = Arrays.asList(roles.values());
+            return;
+        }
 
-            if(rolesList.contains(UserRole.PUBLIC)) {
-                return;
-            } else {
-                context.register(new AuthenticationFilter());
-                context.register(new AuthorizationFilter());
-            }
-         }
+        List rolesList = Arrays.asList(roles.values());
+
+        if(rolesList.contains(UserRole.PUBLIC)) {
+            return;
+        }
+
+        if(rolesList.contains(UserRole.LOGIN)) {
+            context.register(new LoginFilter());
+            return;
+        }
+
+        context.register(new AuthenticationFilter());
+        context.register(new AuthorizationFilter());
+
     }
 }

@@ -57,7 +57,7 @@ public class JWTTokenHelper {
         }
     }
 
-    public static int getUserIdClaim(String token) {
+    public static int getUserIdFromClaim(String token) {
         DecodedJWT jwt = JWT.decode(token);
         Claim claim = jwt.getClaim(USERID_CLAIM);
         return JWT.decode(token).getClaim(USERID_CLAIM).asInt();

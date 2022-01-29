@@ -14,9 +14,10 @@ public class User extends AbstractBaseEntity {
     @Column(unique = true)
     private String name;
     private String password;
+    private boolean isActive;
 
     @Column(name = "role")
-    @ElementCollection(targetClass = UserRole.class)
+    @ElementCollection(targetClass = UserRole.class, fetch = FetchType.EAGER)
     @CollectionTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -65,7 +66,24 @@ public class User extends AbstractBaseEntity {
         this.roles = roles;
     }
 
+    public boolean hasRole(UserRole role) {
+        return getRoles().contains(role);
+    }
+
     public void encryptPassword() {
         this.password = PasswordHelper.encryptPassword(password);
     }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
 }

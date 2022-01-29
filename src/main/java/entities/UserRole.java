@@ -6,7 +6,7 @@ public enum UserRole {
 
     ADMIN("admin", "Full access"),
     PUBLIC("public", "Endpoint available for all"),
-    LOGIN("login", "Granted to login"),
+    LOGIN("login", "Granted to login and get token"),
     HEARTBEAT("heartbeat", "test for api");
 
     @Id
