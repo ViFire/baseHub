@@ -3,11 +3,7 @@ package api.security;
 
 import database.UserRepository;
 import entities.User;
-import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.spi.CDI;
-import jakarta.inject.Inject;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
 import jakarta.ws.rs.core.Response;
@@ -15,6 +11,11 @@ import jakarta.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+
+/**
+ * Validate if request contains authorization header with a valid JWT token.
+ * Otherwise requestes will be abborded.
+ */
 public class AuthenticationFilter implements ContainerRequestFilter {
 
     private UserRepository repo = CDI.current().select((UserRepository.class)).get();
@@ -25,7 +26,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         log.info("Authentication");
 
         String authHeader = requestContext.getHeaderString("Authorization");
-
         if(authHeader == null) {
             requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
             return;
@@ -39,8 +39,8 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             return;
         }
 
-
-        User claimedUser = (User) repo.find(1).get();
+        int claimedUserId = JWTTokenHelper.getUserIdFromClaim(credentials);
+        User claimedUser = (User) repo.find(claimedUserId).orElse(null);
 
         if(claimedUser == null || !claimedUser.isActive() || claimedUser.getId() < 1) {
             requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
@@ -48,6 +48,5 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         }
 
         requestContext.setProperty("claimedUser", claimedUser);
-
     }
 }

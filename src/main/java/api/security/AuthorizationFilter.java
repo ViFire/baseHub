@@ -7,10 +7,15 @@ import jakarta.ws.rs.container.ContainerRequestFilter;
 import jakarta.ws.rs.container.ResourceInfo;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.SecurityContext;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.logging.Logger;
 
+/**
+ * Validate if claimed user has access to the requested ressource
+ */
 public class AuthorizationFilter implements ContainerRequestFilter {
 
     @Context

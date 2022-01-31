@@ -53,16 +53,16 @@ public class SecurityResource extends BasicWebServiceOperation {
         */
 
 
-        loggedInUser = new User();
-        loggedInUser.setName("admin");
-        loggedInUser.setId(1);
-        loggedInUser.setPassword("System32!");
-        loggedInUser.encryptPassword();
-        loggedInUser.setActive(true);
+        claimedUser = new User();
+        claimedUser.setName("admin");
+        claimedUser.setId(1);
+        claimedUser.setPassword("System32!");
+        claimedUser.encryptPassword();
+        claimedUser.setActive(true);
 
 
-        if (loggedInUser != null && loggedInUser.isActive()) {
-            response.setPayload(JWTTokenHelper.createUserToken(loggedInUser));
+        if (claimedUser != null && claimedUser.isActive()) {
+            response.setPayload(JWTTokenHelper.createUserToken(claimedUser));
         }
         return createAndSendResponse();
     }
