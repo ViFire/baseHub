@@ -2,11 +2,10 @@ package api.context;
 
 import entities.User;
 import jakarta.annotation.PostConstruct;
-import jakarta.inject.Inject;
-import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ResourceInfo;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.SecurityContext;
 
 public class BasicWebServiceOperation implements IBasicWebServiceOperation {
 
@@ -14,9 +13,9 @@ public class BasicWebServiceOperation implements IBasicWebServiceOperation {
     private ResourceInfo resourceInfo;
 
     @Context
-    private ContainerRequestContext context;
+    private SecurityContext securityContext;
 
-    protected User claimedUser;
+    protected User claimedUser = null;
     protected StatusReport response = new StatusReport();
 
     public StatusReport getStatus() {
@@ -38,7 +37,7 @@ public class BasicWebServiceOperation implements IBasicWebServiceOperation {
 
     @PostConstruct
     public void initResource() {
-        this.claimedUser = context.getProperty("claimedUser") != null ? (User) context.getProperty("claimedUser") : null;
+        this.claimedUser = (User) securityContext.getUserPrincipal();
     }
 
 }

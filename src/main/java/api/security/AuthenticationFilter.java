@@ -1,15 +1,21 @@
 package api.security;
 
 
+
 import database.UserRepository;
 import entities.User;
 import jakarta.enterprise.inject.spi.CDI;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
+import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.Response;
 
+
 import java.io.IOException;
-import java.util.logging.Logger;
+import java.security.Principal;
+
+import jakarta.ws.rs.core.SecurityContext;
+import org.apache.logging.log4j.*;
 
 
 /**
@@ -47,6 +53,27 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             return;
         }
 
-        requestContext.setProperty("claimedUser", claimedUser);
+        SecurityContext secContext = new SecurityContext() {
+            @Override
+            public Principal getUserPrincipal() {
+                return claimedUser;
+            }
+
+            @Override
+            public boolean isUserInRole(String role) {
+                return false;
+            }
+
+            @Override
+            public boolean isSecure() {
+                return false;
+            }
+
+            @Override
+            public String getAuthenticationScheme() {
+                return "BASIC";
+            }
+        };
+        requestContext.setSecurityContext(secContext);
     }
 }

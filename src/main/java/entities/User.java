@@ -2,11 +2,14 @@ package entities;
 
 import api.security.PasswordHelper;
 import jakarta.persistence.*;
+
+import javax.security.auth.Subject;
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class User extends AbstractBaseEntity {
+public class User extends AbstractBaseEntity implements Principal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -85,5 +88,28 @@ public class User extends AbstractBaseEntity {
     public void setAccount(Account account) {
         this.account = account;
     }
+
+    public boolean equals(Object another) {
+        return false;
+    }
+
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", isActive=" + isActive +
+                ", roles=" + roles +
+                ", account=" + account +
+                '}';
+    }
+
+    public int hashCode() {
+        return 0;
+    }
+
+    public boolean implies(Subject subject) {
+        return Principal.super.implies(subject);
+    }
+
 
 }
