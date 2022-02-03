@@ -35,8 +35,8 @@ public class JWTTokenHelper {
             JWTCreator.Builder token = JWT
                     .create()
                     .withIssuer(ISSUER_CLAIM)
-                    .withClaim(USERID_CLAIM, logonUser.getId())
-                    .withClaim(USER_ROLE_CLAIM, roles);
+                    .withClaim(USERID_CLAIM, logonUser.getId());
+                    //.withClaim(USER_ROLE_CLAIM, roles);
 
             return token.sign(ALGORITHM);
 
