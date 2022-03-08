@@ -18,7 +18,7 @@ import static org.mockito.Mockito.mock;
 class UserResourceTest {
 
     @InjectMocks
-    private UserResource userService;
+    private UserService userService;
 
     @Mock
     private UserDao dao;

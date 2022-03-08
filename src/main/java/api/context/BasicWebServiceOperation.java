@@ -2,15 +2,13 @@ package api.context;
 
 import entities.User;
 import jakarta.annotation.PostConstruct;
-import jakarta.ws.rs.container.ResourceInfo;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.SecurityContext;
 
+@Transactional(Transactional.TxType.REQUIRED)
 public class BasicWebServiceOperation implements IBasicWebServiceOperation {
-
-    @Context
-    private ResourceInfo resourceInfo;
 
     @Context
     private SecurityContext securityContext;

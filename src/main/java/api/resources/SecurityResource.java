@@ -20,12 +20,7 @@ import jakarta.ws.rs.core.Response;
 import java.util.Optional;
 
 @Path("/auth")
-@Stateless
-@TransactionManagement(TransactionManagementType.BEAN)
 public class SecurityResource extends BasicWebServiceOperation {
-
-    @Resource
-    private UserTransaction transaction;
 
     @Inject
     private UserRepository repo;

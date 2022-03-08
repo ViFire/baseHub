@@ -2,10 +2,7 @@ package database;
 
 import entities.User;
 import jakarta.inject.Named;
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.PersistenceException;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
@@ -25,7 +22,7 @@ public class UserDao extends BasicDao<User> {
         super(inferredClass);
     }
 
-    public User findByName(String name) {
+    public User findUserByName(String name) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<User> query = cb.createQuery(User.class);
         Root<User> userRoot = query.from(User.class);
