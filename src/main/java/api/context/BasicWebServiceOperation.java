@@ -27,6 +27,8 @@ public class BasicWebServiceOperation implements IBasicWebServiceOperation {
     public void setPayload(Object payload) {
         response.setPayload(payload);
     }
+
+
     public Response createAndSendResponse() {
         if (response.getStatus() == StatusLevel.OK || response.getStatus() == StatusLevel.WARNING) {
             return Response.status(Response.Status.OK).entity(getStatus()).build();

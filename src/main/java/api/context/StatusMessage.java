@@ -2,7 +2,9 @@ package api.context;
 
 public enum StatusMessage {
 
-    DUPLICATE("E1000", "Entity with primary key already exist");
+    DUPLICATE("E1000", "Entity with primary key already exist"),
+    PERSISTANCE("P1000", "Could not update/save entity")
+    ;
 
 
 
