@@ -11,6 +11,8 @@ import java.util.Optional;
 
 public class AbstractRepository<T extends AbstractBaseEntity> {
 
+    //TODO https://www.baeldung.com/java-dao-vs-repository
+
     @Resource protected UserTransaction transaction;
     @PersistenceContext protected EntityManager em;
 
@@ -18,30 +20,6 @@ public class AbstractRepository<T extends AbstractBaseEntity> {
 
     public AbstractRepository(Class<T> inferredClass) {
         this.inferredClass = inferredClass;
-    }
-
-    //TODO implement longconversation and add begintransaction to create operator
-    private void beginTransaction() {
-        try {
-            transaction.begin();
-        } catch (NotSupportedException e) {
-            e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        }
-    }
-    private void closeTransaction() {
-        try {
-            transaction.commit();
-        } catch (RollbackException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        }
     }
 
     public void create(T entity) {

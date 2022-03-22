@@ -73,7 +73,7 @@ public class UserService extends BasicWebServiceOperation {
         }
 
         try {
-            dao.persist(newusr);
+            repo.persist(newusr);
         } catch (PersistenceException e) {
             response.setResponseToError(newusr, "Error", "Could not update or create user");
         }
