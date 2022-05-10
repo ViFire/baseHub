@@ -5,7 +5,7 @@
              version="3.0">
     <persistence-unit name="baseHubPU">
         <!-- this is defined in the wildfly standalone.xml -->
-        <jta-data-source>java:jboss/datasources/MySqlDS</jta-data-source>
+        <jta-data-source>java:/MySqlDS</jta-data-source>
         <properties>
             <!-- none - create - drop - drop-and-create -->
             <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>

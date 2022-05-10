@@ -9,11 +9,12 @@ import org.apache.commons.codec.binary.Base64;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
 import jakarta.ws.rs.core.Response;
-import org.apache.logging.log4j.core.*;
+
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.Principal;
+import java.util.logging.Logger;
 
 
 /**

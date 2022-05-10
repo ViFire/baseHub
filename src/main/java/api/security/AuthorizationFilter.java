@@ -9,9 +9,9 @@ import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.Response;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import jakarta.ws.rs.core.SecurityContext;
-import org.apache.logging.log4j.*;
 
 
 /**

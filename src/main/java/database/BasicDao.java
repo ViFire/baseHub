@@ -1,5 +1,6 @@
 package database;
 
+import jakarta.interceptor.Interceptors;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -28,6 +29,7 @@ public abstract class BasicDao<T> {
     }
 
     @JaversAuditable
+    @Interceptors(AuditInterceptor.class)
     public void persist(T entity) {
         if(em.contains(entity)) {
             em.merge(entity);

@@ -7,16 +7,14 @@ import entities.User;
 import jakarta.enterprise.inject.spi.CDI;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
-import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.Response;
 
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.logging.Logger;
 
 import jakarta.ws.rs.core.SecurityContext;
-import org.apache.logging.log4j.*;
-
 
 /**
  * Validate if request contains authorization header with a valid JWT token.
