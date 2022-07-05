@@ -1,5 +1,6 @@
 package database;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.interceptor.Interceptors;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -28,8 +29,8 @@ public abstract class BasicDao<T> {
         this.inferredClass = inferredClass;
     }
 
-    @JaversAuditable
-    @Interceptors(AuditInterceptor.class)
+    //@JaversAuditable
+    //@Interceptors(AuditInterceptor.class)
     public void persist(T entity) {
         if(em.contains(entity)) {
             em.merge(entity);

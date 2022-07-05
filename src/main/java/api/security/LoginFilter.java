@@ -31,12 +31,13 @@ public class LoginFilter implements ContainerRequestFilter {
 
         String authorization = requestContext.getHeaderString("Authorization");
 
-        if(authorization == null) {
+        if(authorization == null || authorization.indexOf("Basic") != 0) {
             requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
             return;
         }
 
         String base64Credentials = authorization.substring("Basic".length()).trim();
+
         byte[] credDecoded = Base64.decodeBase64(base64Credentials);
         String credentials = new String(credDecoded, StandardCharsets.UTF_8);
         // credentials = username:password
@@ -53,7 +54,7 @@ public class LoginFilter implements ContainerRequestFilter {
             SecurityContext secContext = new SecurityContext() {
                 @Override
                 public Principal getUserPrincipal() {
-                    return loginUser;
+                    return repo.findByName(loginUser.getName());
                 }
 
                 @Override

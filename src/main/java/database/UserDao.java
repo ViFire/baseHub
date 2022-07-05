@@ -15,7 +15,7 @@ import java.util.List;
 public class UserDao extends BasicDao<User> {
 
     public UserDao() {
-        super();
+        super(User.class);
     }
 
     public UserDao(Class<User> inferredClass) {

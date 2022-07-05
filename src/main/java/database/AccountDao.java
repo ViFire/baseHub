@@ -7,7 +7,7 @@ import jakarta.inject.Named;
 public class AccountDao extends BasicDao<Account> {
 
     public AccountDao() {
-        super();
+        super(Account.class);
     }
 
     public AccountDao(Class<Account> inferredClass) {

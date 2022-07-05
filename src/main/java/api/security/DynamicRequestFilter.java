@@ -9,6 +9,11 @@ import jakarta.ws.rs.ext.Provider;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * All available resources have different access permissions. This class loads further filters depending on the target method and its UserRoles.
+ * @see UserRoles
+ * @see UserRole
+ */
 @Provider
 public class DynamicRequestFilter implements DynamicFeature {
 
@@ -25,6 +30,7 @@ public class DynamicRequestFilter implements DynamicFeature {
 
         List rolesList = Arrays.asList(roles.values());
 
+        // Resources which can be called without any authentication
         if(rolesList.contains(UserRole.PUBLIC)) {
             return;
         }
