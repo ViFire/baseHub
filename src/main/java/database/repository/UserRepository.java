@@ -1,5 +1,6 @@
-package database;
+package database.repository;
 
+import database.repository.AbstractRepository;
 import entities.User;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -9,9 +10,8 @@ import jakarta.persistence.criteria.Root;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-public class UserRepository extends AbstractRepository{
+public class UserRepository extends AbstractRepository {
 
     public UserRepository() {
         super(User.class);

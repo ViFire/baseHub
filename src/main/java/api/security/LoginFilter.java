@@ -1,9 +1,8 @@
 package api.security;
 
-import database.UserRepository;
+import database.repository.UserRepository;
 import entities.User;
 import jakarta.enterprise.inject.spi.CDI;
-import jakarta.inject.Inject;
 import jakarta.ws.rs.core.SecurityContext;
 import org.apache.commons.codec.binary.Base64;
 import jakarta.ws.rs.container.ContainerRequestContext;

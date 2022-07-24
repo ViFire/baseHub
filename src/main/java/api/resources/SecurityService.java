@@ -3,7 +3,7 @@ package api.resources;
 import api.context.BasicWebServiceOperation;
 import api.security.JWTTokenHelper;
 import api.security.UserRoles;
-import database.UserRepository;
+import database.repository.UserRepository;
 import entities.UserRole;
 import jakarta.inject.Inject;
 import jakarta.transaction.*;

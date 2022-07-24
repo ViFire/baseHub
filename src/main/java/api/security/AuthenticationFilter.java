@@ -2,7 +2,7 @@ package api.security;
 
 
 
-import database.UserRepository;
+import database.repository.UserRepository;
 import entities.User;
 import jakarta.enterprise.inject.spi.CDI;
 import jakarta.ws.rs.container.ContainerRequestContext;

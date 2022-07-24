@@ -1,4 +1,4 @@
-package database;
+package database.repository;
 
 import entities.AbstractBaseEntity;
 import jakarta.annotation.Resource;

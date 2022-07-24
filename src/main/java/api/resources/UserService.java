@@ -2,7 +2,7 @@ package api.resources;
 
 import api.context.BasicWebServiceOperation;
 import api.security.UserRoles;
-import database.UserDao;
+import database.dao.UserDao;
 import entities.User;
 import entities.UserRole;
 import jakarta.inject.Inject;

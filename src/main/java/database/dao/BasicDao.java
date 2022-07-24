@@ -1,4 +1,4 @@
-package database;
+package database.dao;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.interceptor.Interceptors;
