@@ -1,5 +1,6 @@
-package database.dao;
+package api.resources.account;
 
+import api.resources.BasicDao;
 import entities.Account;
 import jakarta.inject.Named;
 

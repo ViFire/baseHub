@@ -2,8 +2,8 @@ package entities;
 
 import jakarta.persistence.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Product {
@@ -13,13 +13,10 @@ public class Product {
     private int id;
 
     private String name;
+    @OneToMany
+    @JoinColumn(name="product_identifier")
+    private Set<ProductIdentifier> productIdentifier = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "product_identifier_ids",
-            joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "identifier_id", referencedColumnName = "id")})
-    @MapKey(name = "identValue")
-    private Map<String, ProductIdentifier> identifierMap = new HashMap();
 
     public Product() {
     }
@@ -40,15 +37,11 @@ public class Product {
         this.name = name;
     }
 
-    public Map<String, ProductIdentifier> getIdentifierMap() {
-        return identifierMap;
+    public Set<ProductIdentifier> getRoles() {
+        return productIdentifier;
     }
 
-    public void setIdentifierMap(Map<String, ProductIdentifier> identifierMap) {
-        this.identifierMap = identifierMap;
-    }
-
-    public void addIdentifierMap(ProductIdentifier identifier) {
-        identifierMap.put(identifier.getIdentName().getIdentName(),identifier);
+    public void setRoles(Set<ProductIdentifier> productIdentifier) {
+        this.productIdentifier = productIdentifier;
     }
 }

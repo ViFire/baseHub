@@ -1,5 +1,6 @@
-package database.dao;
+package api.resources.product;
 
+import api.resources.BasicDao;
 import entities.Product;
 import jakarta.inject.Named;
 

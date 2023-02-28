@@ -1,5 +1,6 @@
-package database.dao;
+package api.resources.security;
 
+import api.resources.BasicDao;
 import entities.User;
 import jakarta.inject.Named;
 import jakarta.persistence.NoResultException;

@@ -1,17 +1,13 @@
-package api.resources;
+package api.resources.security;
 
 import api.context.BasicWebServiceOperation;
 import api.security.UserRoles;
-import database.dao.UserDao;
 import entities.User;
 import entities.UserRole;
 import jakarta.inject.Inject;
-import jakarta.persistence.PersistenceException;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
+import jakarta.validation.*;
 import jakarta.ws.rs.*;
+import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.modelmapper.ModelMapper;
@@ -24,9 +20,6 @@ public class UserService extends BasicWebServiceOperation {
 
     @Inject
     private UserDao repo;
-
-    @Inject
-    private UserDao dao;
 
     @GET
     @Path("id/{userid}")
@@ -74,11 +67,12 @@ public class UserService extends BasicWebServiceOperation {
 
         try {
             repo.persist(newusr);
-        } catch (PersistenceException e) {
+        } catch (Exception e) {
             response.setResponseToError(newusr, "Error", "Could not update or create user");
         }
 
         return createAndSendResponse();
     }
+
 
 }

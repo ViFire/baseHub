@@ -1,4 +1,4 @@
-package api.resources;
+package api.resources.security;
 
 import api.context.BasicWebServiceOperation;
 import api.security.JWTTokenHelper;

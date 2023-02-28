@@ -1,4 +1,4 @@
-package api.resources;
+package api.resources.security;
 
 import entities.Account;
 import entities.UserRole;

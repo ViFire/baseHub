@@ -2,16 +2,16 @@ package entities;
 import jakarta.persistence.*;
 
 @Entity
-public class Identifier {
+public class IdentifierKey {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(unique = true)
-    private String identName;
+    private String identifierKey;
 
-    public Identifier() {
+    public IdentifierKey() {
     }
 
     public int getId() {
@@ -22,12 +22,12 @@ public class Identifier {
         this.id = id;
     }
 
-    public String getIdentName() {
-        return identName;
+    public String getIdentifierKey() {
+        return identifierKey;
     }
 
-    public void setIdentName(String identName) {
-        this.identName = identName;
+    public void setIdentifierKey(String identifierKey) {
+        this.identifierKey = identifierKey;
     }
 
 }
